@@ -3,4 +3,5 @@ project(clione)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(clione main.cpp)
+add_executable(clione main.cpp
+        线性表/LinearTable.cpp)
