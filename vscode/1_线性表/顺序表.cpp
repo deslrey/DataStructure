@@ -48,7 +48,7 @@ void InsertList(SeqList &L, int i, int e)
     {
         L.data[j] = L.data[j - 1];
     }
-    L.data[i] = e;
+    L.data[i - 1] = e;
     L.len++;
 }
 

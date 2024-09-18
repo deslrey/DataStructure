@@ -67,6 +67,25 @@ bool DeleteList(SeqList &L, int index, int &e) {
     return true;
 }
 
+//  按位查找
+int GetElement(SeqList &L, int index) {
+    if (index < 1 || index > L.len) {
+        printf("查找索引下标位置不合法");
+        return -1;
+    }
+    return L.data[index - 1];
+}
+
+//  按值查找
+int LocateElement(SeqList &L, int data) {
+    for (int i = 0; i < L.len; ++i) {
+        if (L.data[i] == data) {
+            return i + 1;
+        }
+    }
+    return 0;
+}
+
 int main() {
     SeqList L;
     InitList(L);
@@ -74,10 +93,12 @@ int main() {
     InsertList(L, 2, 20);
 
     int e = -1;
-//    bool b = DeleteList(L, 1, e);
-//
-//    cout << b << endl;
-    cout << "len ------>" << L.len << endl;
+    DeleteList(L, 1, e);
+
+    int data = GetElement(L, 1);
+
+    printf("%d\n", data);
+
     PrintList(L);
 
     free(L.data);
