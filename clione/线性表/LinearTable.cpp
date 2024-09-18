@@ -33,7 +33,6 @@ void IncreaseSize(SeqList &L, int len) {
 }
 
 void InsertList(SeqList &L, int i, int e) {
-    cout << "len ------> " << L.len << endl;  // 正确输出当前长度
     if (i < 1 || i > L.len + 1) {
         cout << "插入下标有误, 插入的下标为: " << i << endl;  // 正确输出下标
         return;
@@ -49,14 +48,37 @@ void InsertList(SeqList &L, int i, int e) {
     L.len++;
 }
 
+void PrintList(SeqList &L) {
+    for (int i = 0; i < L.len; ++i) {
+        printf("%d\t", L.data[i]);
+    }
+    printf("\n");
+}
+
+bool DeleteList(SeqList &L, int index, int &e) {
+    if (index < 1 || index > L.len)
+        return false;
+
+    e = L.data[index - 1];
+    for (int i = index; i < L.len; i++) {
+        L.data[i - 1] = L.data[i];
+    }
+    L.len--;
+    return true;
+}
+
 int main() {
     SeqList L;
     InitList(L);
     InsertList(L, 1, 10);
-    printf("p的值是 ------> %d\n", L.len);
-    for (int i = 0; i < L.len; i++) {
-        cout << L.data[i] << endl;
-    }
+    InsertList(L, 2, 20);
+
+    int e = -1;
+//    bool b = DeleteList(L, 1, e);
+//
+//    cout << b << endl;
+    cout << "len ------>" << L.len << endl;
+    PrintList(L);
 
     free(L.data);
 
