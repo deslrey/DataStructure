@@ -205,6 +205,38 @@ int Lenfth(LinkList &L)
     return count;
 }
 
+// 尾插法建立单链表
+LinkList ListTaillensert(LinkList &L)
+{
+    int x;
+    InitList(L);
+    LNode *s, *r = L;
+    scanf("%d", x);
+    while (x != 9999)
+    {
+        s = (LNode *)malloc(sizeof(LNode));
+        s->data = x;
+        r->next = s;
+        r = s;
+    }
+    r->next = NULL;
+    return L;
+}
+
+void PrintList(LinkList &L)
+{
+    if (L == NULL)
+    {
+        printf("当前链表未空\n");
+        LNode *p = L;
+        while (p != NULL)
+        {
+            p = p->next;
+            printf("%d\t", p->data);
+        }
+    }
+}
+
 // 判断单链表是否为空
 bool Empty(LinkList &L)
 {
@@ -213,6 +245,11 @@ bool Empty(LinkList &L)
 
 int main()
 {
+    // 初始化链表
+    LinkList L;
+    InitList(L);
+    InsertNextNode(L, 1);
+    PrintList(L);
 
     return 0;
 }
