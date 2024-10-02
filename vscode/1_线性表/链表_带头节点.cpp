@@ -22,6 +22,17 @@ bool InitList(LinkList &L)
     return true;
 }
 
+LNode *InitNode()
+{
+    LNode *s = (LNode *)malloc(sizeof(LNode));
+    if (s == NULL)
+    {
+        printf("分配失败,内存不足\n");
+        return NULL;
+    }
+    return s;
+}
+
 // 在第 i 个位置插入元素 e
 bool ListInsert(LinkList &L, int i, dataType e)
 {
@@ -210,17 +221,51 @@ int Lenfth(LinkList &L)
 LinkList ListTaillensert(LinkList &L)
 {
     int x;
-    InitList(L);
+    bool result = InitList(L);
+    if (!result)
+    {
+        printf("创建失败\n");
+        return NULL;
+    }
+
     LNode *s, *r = L;
-    scanf("%d", x);
+    scanf("%d", &x);
     while (x != 9999)
     {
         s = (LNode *)malloc(sizeof(LNode));
         s->data = x;
         r->next = s;
         r = s;
+        scanf("%d", &x);
     }
     r->next = NULL;
+    return L;
+}
+
+LinkList ListHeadInsert(LinkList &L)
+{
+    bool result = InitList(L);
+    if (!result)
+    {
+        printf("创建失败\n");
+        return NULL;
+    }
+
+    LNode *s;
+    int x;
+    scanf("%d", &x);
+    while (x != 9999)
+    {
+        s = InitNode();
+        if (s == NULL)
+        {
+            break;
+        }
+        s->data = x;
+        s->next = L->next;
+        L->next = s;
+        scanf("%d", &x);
+    }
     return L;
 }
 
