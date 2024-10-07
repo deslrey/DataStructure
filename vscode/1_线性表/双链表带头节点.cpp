@@ -43,6 +43,41 @@ bool InsterNextDNode(DNode *p, DNode *s)
     return true;
 }
 
+// 删除p节点的后继节点
+bool DeleteNextDNode(DNode *p)
+{
+    if (p == NULL)
+    {
+        printf("当前节点为NULL\n");
+        return false;
+    }
+    DNode *q = p->next;
+    if (q == NULL)
+    {
+        printf("当前节点没有后继节点\n");
+        return false;
+    }
+    p->next = q->next;
+    if (p->next != NULL)
+    {
+        p->next->prior = p;
+    }
+    free(q);
+    printf("删除成功\n");
+    return true;
+}
+
+void DestoryList(DlinkList &L)
+{
+    // 循环释放各个数据节点
+    while (L->next != NULL)
+    {
+        DeleteNextDNode(L);
+    }
+    free(L);
+    L = NULL;
+}
+
 bool Empty(DlinkList L)
 {
     return L->next == NULL;
