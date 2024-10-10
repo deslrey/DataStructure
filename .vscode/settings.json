@@ -1,4 +1,11 @@
 {
     "C_Cpp.errorSquiggles": "enabled",
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "files.associations": {
+        "\"*.wpy\"": "\"vue\"",
+        "*.html": "html",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp"
+    }
 }
