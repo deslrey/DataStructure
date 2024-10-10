@@ -31,6 +31,21 @@ bool Push(SqStack &s, DateType e)
     return true;
 }
 
+// 出栈操作
+bool Pop(SqStack &s,DateType &e)
+{
+    if (s.index == -1)
+    {
+        printf("当前栈为空\n");
+        return false;
+    }
+    e = s.data[s.index];
+    s.index--;
+    printf("删除成功\n");
+    return true;
+    
+}
+
 // 判断是否为空栈
 bool EmptyStack(SqStack s)
 {
