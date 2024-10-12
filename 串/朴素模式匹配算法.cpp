@@ -11,18 +11,26 @@ typedef struct
     int length;
 } SString;
 
-// 定位操作
+// 朴素模式匹配算法
 int Indexof(SString S, SString T)
 {
-    int i = 1, n = StrLength(S), m = StrLength(T);
-    SString str;
-    while (i < n - m + 1)
+    int i = 1, j = 1;
+    while (i <= S.length && j <= T.length)
     {
-        SubString(str, S, i, m);
-        if (StrCompare(str, T) != 0)
+        if (S.ch[i] == T.ch[j])
+        {
             i++;
+            j++;
+        }
         else
-        return i;
+        {
+            i = i - j + 2;
+            j = 1;
+        }
+    }
+    if (j > T.length)
+    {
+        return i - T.length;
     }
     return 0;
 }
